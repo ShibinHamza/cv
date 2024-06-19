@@ -4,28 +4,30 @@ body {
     padding: 0;
     background-color: #f4f4f9;
     color: #333;
+    font-size: 12px; /* Adjusted for fitting content */
 }
 
 .container {
     display: flex;
-    flex-direction: row;
     max-width: 1200px;
     margin: auto;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
     overflow: hidden;
 }
 
 .sidebar {
-    flex: 1;
     background-color: #0077cc;
     color: #fff;
     padding: 20px;
+    min-width: 180px; /* Reduced width */
+    flex-shrink: 0;
 }
 
 .sidebar h1 {
     margin: 0;
-    font-size: 2em;
+    font-size: 1.5em; /* Reduced font size */
 }
 
 .sidebar .contact {
@@ -38,41 +40,20 @@ body {
 }
 
 .content {
-    flex: 3;
+    display: flex;
+    flex: 1;
     padding: 20px;
 }
 
-section {
-    margin-bottom: 20px;
+.education, .work-history {
+    flex: 1;
+    margin-right: 10px;
 }
 
-section h2 {
+.education h2, .work-history h2 {
     border-bottom: 2px solid #0077cc;
     padding-bottom: 5px;
     margin-bottom: 10px;
-}
-
-.job, .edu-entry {
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.job img {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-.job h3, .edu-entry h3 {
-    margin: 0;
-    font-size: 1.2em;
-    color: #0077cc;
-}
-
-.job p, .edu-entry p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #555;
 }
 
 ul {
@@ -84,33 +65,55 @@ ul li {
     list-style-type: square;
 }
 
-.job-details {
+.job-slider {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Adjust height to fit the content */
+    overflow: hidden;
+}
+
+.job-slide {
     display: none;
-    background-color: #f4f4f9;
-    padding: 10px;
-    border: 1px solid #ddd;
     position: absolute;
-    top: 60px;
-    left: 0;
-    z-index: 1;
-    width: calc(100% - 60px);
-}
-
-.job:hover .job-details {
-    display: block;
-}
-
-footer {
+    width: 100%;
+    transition: opacity 0.5s ease-in-out;
     text-align: center;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-    margin-top: 20px;
 }
 
-footer p {
-    margin: 0;
+.job-slide.active {
+    display: block;
+    opacity: 1;
+}
+
+.job img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.job p {
+    margin: 10px 0;
     font-size: 0.9em;
-    color: #777;
+    color: #555;
+}
+
+.slider-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.slider-buttons button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.slider-buttons button:hover {
+    background-color: #005bb5;
 }
 
 /* Responsive Design */
@@ -118,14 +121,16 @@ footer p {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+        height: auto;
     }
 
     .sidebar {
         text-align: center;
+        min-width: 100%;
     }
 
-    .job-details {
-        position: static;
-        width: auto;
+    .education, .work-history {
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 }
